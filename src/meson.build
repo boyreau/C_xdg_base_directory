@@ -1,3 +1,3 @@
 sources += files(
-  'dir.c',
+  'xdg_path.c',
 )
