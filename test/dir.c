@@ -1,4 +1,4 @@
-#include "dir.h"
+#include "xdg_path.h"
 
 #include <assert.h>
 #include <stdarg.h>
