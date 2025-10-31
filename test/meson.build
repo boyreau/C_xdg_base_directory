@@ -11,7 +11,7 @@ foreach file : tests
   	fs.stem(test),
     test, 
   	include_directories: incdir,
-  	link_with: libC_xdg_base_dir,
+  	link_with: C_xdg_base_directory,
   )
 
   test(

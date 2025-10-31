@@ -1,5 +1,5 @@
 project(
-  'C-xdg_base_dir',
+  'C_xdg_base_directory',
   'c',
   version: '0.0.1',
   default_options: [
@@ -13,15 +13,15 @@ incdir = include_directories('include',)
 sources = files()
 subdir('src')
 
-libC_xdg_base_dir = library(
-  'libC-xdg_base_dir',
+C_xdg_base_directory = library(
+  'C_xdg_base_directory',
   sources,
   include_directories: incdir,
 )
 
-libC_xdg_base_dir_dep = declare_dependency(
+C_xdg_base_directory_dep = declare_dependency(
   include_directories: incdir,
-  link_with: libC_xdg_base_dir,
+  link_with: C_xdg_base_directory,
 )
 
 subdir('test')
