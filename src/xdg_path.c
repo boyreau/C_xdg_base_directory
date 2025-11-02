@@ -26,6 +26,25 @@ static int is_valid(char *path)
 }
 
 /*
+ * @brief path must be non-null, nonempty and absolute.
+ */
+static int is_relative(char *path)
+{
+	if (path != NULL && strcmp(path, "") != 0 && path[0] != '/')
+	{
+		fprintf(
+			stderr,
+			"WARNING: A RELATIVE PATH WAS DETECTED IN C_XDG_BASE_DIRECTORY.\n"
+			"Relative pathes in XDG_* environment variables are forbidden by "
+			"the standard. Please, adjust your environment variables or enable "
+			"the ALLOW_RELATIVE_PATH option before compiling this library.\n"
+		);
+		return 1;
+	}
+	return 0;
+}
+
+/*
  * Variadic joins. If one of the string is NULL, the final string will be NULL.
  * You can see it as a concatenation operator on a set, with NULL as the
  * absorbing element.
@@ -102,6 +121,8 @@ char *XDG_DATA_HOME(void)
 	char *dir = getenv("XDG_DATA_HOME");
 	if (is_valid(dir))
 		return str_dup(dir);
+	if (is_relative(dir))
+		return NULL;
 	dir		   = NULL;
 	char *home = HOME();
 	if (is_valid(home))
@@ -115,6 +136,8 @@ char *XDG_CONFIG_HOME(void)
 	char *dir = getenv("XDG_CONFIG_HOME");
 	if (is_valid(dir))
 		return str_dup(dir);
+	if (is_relative(dir))
+		return NULL;
 	dir		   = NULL;
 	char *home = HOME();
 	if (is_valid(home))
@@ -128,6 +151,8 @@ char *XDG_STATE_HOME(void)
 	char *dir = getenv("XDG_STATE_HOME");
 	if (is_valid(dir))
 		return str_dup(dir);
+	if (is_relative(dir))
+		return NULL;
 	dir		   = NULL;
 	char *home = HOME();
 	if (is_valid(home))
@@ -141,6 +166,8 @@ char *XDG_CACHE_HOME(void)
 	char *dir = getenv("XDG_CACHE_HOME");
 	if (is_valid(dir))
 		return str_dup(dir);
+	if (is_relative(dir))
+		return NULL;
 	dir		   = NULL;
 	char *home = HOME();
 	if (is_valid(home))
@@ -154,5 +181,8 @@ char *XDG_RUNTIME_DIR(void)
 	char *dir = getenv("XDG_RUNTIME_DIR");
 	if (is_valid(dir))
 		return str_dup(dir);
+	if (is_relative(dir))
+		return NULL;
+	/* If I extend the code I'll forget to check for relative pathes */
 	return NULL;
 }

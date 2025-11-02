@@ -12,3 +12,9 @@ After including `xdg_path.h` you may use:
  - `char *XDG_CACHE_HOME()` to retrieve a directory suitable for cache files.
  - `char *XDG_RUNTIME_DIR()` to retrieve a directory suitable for runtime files (pipes, sockets, pid files...)
 
+
+If an environment variable contains a relative path, the corresponding function returns a NULL pointer and rants about your configuration.
+
+That's a choice I made after falling into the trap of a relative path defaulting to /home/user (which is pretty confusing). It also overrode some files in my home directory in the process (I don't want that to happen to my users).
+
+I prefer a loud fail over a hidden assumption.

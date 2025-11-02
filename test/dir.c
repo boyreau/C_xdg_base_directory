@@ -42,6 +42,10 @@ void test_XDG_DATA_HOME(void)
 	char *expected = str_join(3, "/home/", username_buf, "/.local/share/");
 	assert(strcmp(XDG_DATA_HOME(), expected) == 0);
 
+	/* Relative path. */
+	setenv("XDG_DATA_HOME", "./blah", 1);
+	assert(XDG_DATA_HOME() == NULL);
+
 	/* Empty env var, empty HOME empty USER */
 	setenv("XDG_DATA_HOME", "", 1);
 	setenv("HOME", "", 1);
