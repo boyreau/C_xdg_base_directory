@@ -5,6 +5,7 @@ project(
   default_options: [
     'c_std=c89',
   ],
+  meson_version: '>=1.4.0',
 )
 
 add_project_arguments('-D_POSIX_C_SOURCE=200809L', language: ['c'],)
