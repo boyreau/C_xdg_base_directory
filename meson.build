@@ -18,6 +18,7 @@ C_xdg_base_directory = library(
   'C_xdg_base_directory',
   sources,
   include_directories: incdir,
+  install: true,
 )
 
 C_xdg_base_directory_dep = declare_dependency(
