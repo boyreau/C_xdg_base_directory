@@ -1,6 +1,7 @@
 #ifndef DIR_H
 #define DIR_H
 
+char *USER(void);
 char *XDG_DATA_HOME(void);
 char *XDG_CONFIG_HOME(void);
 char *XDG_STATE_HOME(void);

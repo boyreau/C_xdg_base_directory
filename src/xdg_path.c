@@ -78,7 +78,13 @@ static char *str_join(int nb, ...)
 	return final_str;
 }
 
-static char *USER(void)
+/**
+ * @brief returns the current process username.
+ *
+ * @returns a heap-allocated pointer to the username, or nullptr if no username
+ * could be found.
+ */
+char *USER(void)
 {
 	char *user = getenv("USER");
 	if (user != NULL && strcmp(user, "") != 0)
